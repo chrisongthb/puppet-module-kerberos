@@ -43,7 +43,7 @@ class kerberos::server::kadmind (
     hasstatus  => true,
     require    => Package[$kadmin_server_package],
     subscribe  => [ File['kdc.conf', 'kadm5.acl'],
-                    Exec['create_krb5kdc_principal'] ],
+    Exec['create_krb5kdc_principal'] ],
   }
 
   # all adding of principals using kadmin can only be done after kadmind

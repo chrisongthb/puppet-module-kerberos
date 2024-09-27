@@ -13,7 +13,7 @@
 # Copyright 2013 Jason Edgecombe, unless otherwise noted.
 #
 class kerberos::params {
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian': {
       $client_packages        = [ 'krb5-user' ]
       $kdc_server_package     = 'krb5-kdc'
@@ -37,8 +37,8 @@ class kerberos::params {
       $kdc_logfile            = '/var/log/kdc.log'
       $kadmind_logfile        = '/var/log/kerberos_admin_server.log'
 
-      $pkinit_cert            = "/var/lib/puppet/ssl/certs/${::fqdn}.pem"
-      $pkinit_key             = "/var/lib/puppet/ssl/private_keys/${::fqdn}.pem"
+      $pkinit_cert            = "/var/lib/puppet/ssl/certs/${facts['networking']['fqdn']}.pem"
+      $pkinit_key             = "/var/lib/puppet/ssl/private_keys/${facts['networking']['fqdn']}.pem"
 
       $kerberos_bootstrap    = false
     }
@@ -65,13 +65,13 @@ class kerberos::params {
       $kdc_logfile            = '/var/log/krb5kdc.log'
       $kadmind_logfile        = '/var/log/kadmind.log'
 
-      $pkinit_cert            = "/var/lib/puppet/ssl/certs/${::fqdn}.pem"
-      $pkinit_key             = "/var/lib/puppet/ssl/private_keys/${::fqdn}.pem"
+      $pkinit_cert            = "/var/lib/puppet/ssl/certs/${facts['networking']['fqdn']}.pem"
+      $pkinit_key             = "/var/lib/puppet/ssl/private_keys/${facts['networking']['fqdn']}.pem"
 
       $kerberos_bootstrap    = false
     }
     default: {
-      fail("The ${module_name} module is not supported on ${::osfamily} based systems")
+      fail("The ${module_name} module is not supported on ${facts['os']['family']} based systems")
     }
   }
 }

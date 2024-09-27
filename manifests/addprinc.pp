@@ -27,9 +27,9 @@ define kerberos::addprinc($principal_name = $title,
     $kadmin = 'kadmin.local'
 
     $addprinc_exec_require = [
-                              Package[$kadmin_server_package],
-                              Exec['create_krb5kdc_principal']
-                              ]
+      Package[$kadmin_server_package],
+      Exec['create_krb5kdc_principal']
+    ]
     $ccache_par = $kadmin_ccache ? {
       undef => '',
       default => "-c '${kadmin_ccache}'"
@@ -57,9 +57,9 @@ define kerberos::addprinc($principal_name = $title,
     }
 
     $addprinc_exec_require = [
-                              Package[$client_packages],
-                              File['krb5.conf']
-                              ]
+      Package[$client_packages],
+      File['krb5.conf']
+    ]
   }
 
   if !('-randkey' in $flags) {

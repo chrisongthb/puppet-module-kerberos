@@ -60,10 +60,10 @@
 #
 # $dns_lookup_realm
 #   Indicate whether DNS TXT records should be used to determine the Kerberos realm of a host.
-#   The default is not to use these records. 
+#   The default is not to use these records.
 #
 # $dns_lookup_kdc
-#  Indicate whether DNS SRV records should be used to locate the KDCs and other servers 
+#  Indicate whether DNS SRV records should be used to locate the KDCs and other servers
 #  for a realm, if they are not listed in the krb5.conf information for the realm
 #  The default is to use these records
 #
@@ -226,7 +226,7 @@ class kerberos(
   $kdc_master_key_type = 'aes256-cts',
   $kdc_supported_enctypes = [ 'aes256-cts:normal',
     'arcfour-hmac:normal',
-    'des3-hmac-sha1:normal' ],
+  'des3-hmac-sha1:normal' ],
   $kdc_pkinit_identity = undef,
   $kdc_logfile = $kerberos::params::kdc_logfile,
   $kdc_iprop_port = undef,

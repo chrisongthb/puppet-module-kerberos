@@ -20,8 +20,8 @@ define kerberos::addprinc_keytab_ktadd(
   if $local == false {
     include kerberos::host_ticket_cache
     if !defined(Kerberos::Addprinc[$principal]) {
-      Kerberos::Ticket_cache['krb5-cache-puppet'] ->
-        Kerberos::Addprinc[$principal]
+      Kerberos::Ticket_cache['krb5-cache-puppet']
+      -> Kerberos::Addprinc[$principal]
     }
   }
 
@@ -59,11 +59,11 @@ define kerberos::addprinc_keytab_ktadd(
     }
   }
 
-  Kerberos::Ticket_cache['krb5-cache-puppet'] ->
-    Kerberos::Keytab[$keytab] ->
-    Kerberos::Ktadd[$ktadd]
+  Kerberos::Ticket_cache['krb5-cache-puppet']
+  -> Kerberos::Keytab[$keytab]
+  -> Kerberos::Ktadd[$ktadd]
 
-  Kerberos::Addprinc[$principal] ->
-    Kerberos::Keytab[$keytab] ->
-    Kerberos::Ktadd[$ktadd]
+  Kerberos::Addprinc[$principal]
+  -> Kerberos::Keytab[$keytab]
+  -> Kerberos::Ktadd[$ktadd]
 }

@@ -46,8 +46,8 @@ class kerberos::client (
   package { $client_packages:
     ensure => present,
   }
-  ->
-  file { 'krb5.conf':
+
+  -> file { 'krb5.conf':
     ensure  => file,
     path    => $krb5_conf_path,
     content => template('kerberos/krb5.conf.erb'),
