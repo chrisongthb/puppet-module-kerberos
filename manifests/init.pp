@@ -237,11 +237,11 @@ class kerberos(
 
   $kprop_cron_hour = '*',
   $kprop_cron_minute = '*/5',
-  $kprop_principal = "host/${fqdn}",
+  $kprop_principal = "host/${facts['networking']['fqdn']}",
   $kprop_keytab = '/etc/krb5.keytab',
 
   $kpropd_iprop_resync_timeout = undef,
-  $kpropd_principal = "host/${fqdn}",
+  $kpropd_principal = "host/${facts['networking']['fqdn']}",
   $kpropd_keytab = '/etc/krb5.keytab',
   $kpropd_master_principal = undef,
 
@@ -254,7 +254,7 @@ class kerberos(
 
   $host_ticket_cache_ccname = '/var/lib/puppet/krb5cc.puppet',
   $host_ticket_cache_service = 'kadmin/admin',
-  $host_ticket_cache_principal = $fqdn,
+  $host_ticket_cache_principal = $facts['networking']['fqdn'],
 
   $pkinit_cert = $kerberos::params::pkinit_cert,
   $pkinit_key  = $kerberos::params::pkinit_key,
